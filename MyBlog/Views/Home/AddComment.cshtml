@@ -1,0 +1,29 @@
+﻿@model MyBlog.Models.Comment
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+    <form asp-action="AddComment" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="Input"></div>
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="PostId" value="@Model.PostId" />
+
+        <div class="form-group row col-sm-3">
+            <label asp-for="User" class="control-label"></label>
+            <input asp-for="User" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Content" class="control-label">Your comment:</label>
+            <textarea asp-for="Content" class="form-control"></textarea>
+        </div>
+
+        <div class="g-recaptcha" data-sitekey="@(Configuration.GetValue<string>("ReCaptcha:SiteKey"))"></div>
+        <div>
+            @Html.ValidationMessage("ReCaptchaError", new { @class = "text-danger" })
+            <Span class="text-danger">@ViewBag.ErrorMessage</Span>
+            @Html.ValidationMessageFor(model=>model.Content)
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </form>

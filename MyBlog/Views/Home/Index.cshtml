@@ -1,0 +1,19 @@
+﻿<div>
+    @*@Html.ActionLink("Create", "CreatePost")*@
+
+</div>
+@foreach (var item in Model)
+{
+
+    <div class="card">
+        <div class="card-body">
+
+            <h1> <a asp-action="Post" asp-route-id="@item.Id">@item.Name</a>@*@{Html.ActionLink(item.Name, "Post", new { id = item.Id })}*@</h1>
+            @item.Description
+            <br/>
+            <span class="lead"> by @(!String.IsNullOrEmpty(item.User)  ? item.User : "Anonimus") posted @item.Date.ToString("MM/dd/yyyy")</span>
+
+        </div>
+    </div>
+    <br/>
+}
