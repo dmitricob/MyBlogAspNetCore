@@ -10,6 +10,7 @@ namespace MyBlog.Models
 {
     public abstract class GoogleReCaptchaModelBase
     {
+        // model to add reCaptcha field to model with spesified validation method
         //[Required]
         [GoogleReCaptchaValidation]
         [BindProperty(Name = "g-recaptcha-response")]

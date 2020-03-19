@@ -12,21 +12,23 @@ namespace MyBlog.Utils
 {
     public class GoogleReCaptchaValidationAttribute : ValidationAttribute
     {
-
+        //class for validation reCaptcha field  inherit from ValidationAttribute
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             Lazy<ValidationResult> errorResult = new Lazy<ValidationResult>(() => new ValidationResult("Google reCAPTCHA validation failed", new String[] { validationContext.MemberName }));
 
+            //chek for correct passed value
             if (value == null || String.IsNullOrWhiteSpace(value.ToString()))
             {
                 return errorResult.Value;
             }
 
+            //get configuration of app to get ReCaptcha string
             IConfiguration configuration = (IConfiguration)validationContext.GetService(typeof(IConfiguration));
             String reCaptchResponse = value.ToString();
             String reCaptchaSecret = configuration.GetValue<String>("ReCaptcha:SecretKey");
 
-
+            //send Get request to confirm reCaptcha and check that we got it 
             HttpClient httpClient = new HttpClient();
             var httpResponse = httpClient.GetAsync($"https://www.google.com/recaptcha/api/siteverify?secret={reCaptchaSecret}&response={reCaptchResponse}").Result;
             if (httpResponse.StatusCode != HttpStatusCode.OK)
@@ -34,6 +36,7 @@ namespace MyBlog.Utils
                 return errorResult.Value;
             }
 
+            //chek respons for validing of reCaptcha chalange
             String jsonResponse = httpResponse.Content.ReadAsStringAsync().Result;
             dynamic jsonData = JObject.Parse(jsonResponse);
             if (jsonData.success != true.ToString().ToLower())
@@ -41,6 +44,7 @@ namespace MyBlog.Utils
                 return errorResult.Value;
             }
 
+            //return if succesful
             return ValidationResult.Success;
 
         }

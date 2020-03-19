@@ -7,6 +7,7 @@ namespace MyBlog.Models
 {
     public class SampleData
     {
+        //class for seeding db
         private static Random gen = new Random();
         static DateTime RandomDay()
         {
@@ -31,12 +32,10 @@ namespace MyBlog.Models
                 context.Comments.Add(c4);
                 context.Comments.Add(c5);
 
-                string examplePost = @"<h1>Some Header</h1>
-
+                //ToDo fix example
+                string examplePost = @"<h1>Some Header</h1>   
 <h2>some subheader</h2>
-
 <p>some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph&nbsp;some text with new paragraph</p>
-
 <ul>
 	<li>some list item 1</li>
 	<li>some list item 2</li>
@@ -44,48 +43,53 @@ namespace MyBlog.Models
 	<li>some list item 4</li>
 	<li>some list item 5</li>
 </ul>
-
 <p>some table&nbsp;</p>
 
 <table border=""1"" cellpadding=""1"" cellspacing=""1"" style=""width: 500px"">
-     < tbody >
+     <tbody>
  
-         < tr >
+         <tr>
  
-             < td > Header 1 </ td >
-    
-                < td > Header2 </ td >
-    
-            </ tr >
-    
-            < tr >
-    
-                < td > value </ td >
-    
-                < td > value </ td >
-    
-            </ tr >
-    
-            < tr >
-    
-                < td > value </ td >
-    
-                < td > value </ td >
-    
-            </ tr >
-    
-        </ tbody >
-    </ table >
+             <td> Header1 </td>
+ 
+             <td> Header2 </td>
+ 
+         </tr>
+ 
+         <tr>
+ 
+             <td> value1 </td>
+ 
+             <td> value2 </td>
+ 
+         </tr>
+ 
+         <tr>
+ 
+             <td> value3 </td>
+ 
+             <td> value4 </td>
+ 
+         </tr>
+ 
+     </tbody>
+ </table>
+ 
+
+ <p> &nbsp;</p>
     
 
-    < p > Some image </ p >
+    <p> some image </p>
        
 
-       < p >< img alt = """" src = ""https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"" style = ""height:460px; width:780px"" /></ p >
-              
+       <p><img  src = ""https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"" /></p>
+            
 
-              < p > &nbsp;</ p >
-                 ";
+            <table border = ""1"" cellpadding = ""1"" cellspacing = ""1"" style = ""width:500px""><!--td--><!--td--><!--tr--><!--td--><!--td--><!--tr--><!--td--><!--td--><!--tr--><!--tbody--><!--table--><!--p--><!--p--><!--p-->
+                   </table>
+
+
+                   ";
 
 
                 context.Posts.AddRange(

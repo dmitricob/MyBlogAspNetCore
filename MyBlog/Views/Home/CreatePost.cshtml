@@ -1,4 +1,7 @@
-﻿@model MyBlog.Models.Post
+﻿
+@* view to create post *@
+
+@model MyBlog.Models.Post
 @{
     ViewData["Title"] = "View";
 }
@@ -24,6 +27,7 @@
     <div class="form-group">
         <label asp-for="Content" class="control-label"></label>
         <textarea asp-for="Content" class="form-control" id="ContentEditor"></textarea>
+        @* use CKEDITOR js lib spesify textarea  *@
         <script>
             CKEDITOR.replace('ContentEditor');
         </script>

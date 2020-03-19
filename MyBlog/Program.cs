@@ -13,6 +13,7 @@ namespace MyBlog
 {
     public class Program
     {
+        // enter point of appp
         public static void Main(string[] args)
         {
            var host = CreateHostBuilder(args).Build();
@@ -21,6 +22,7 @@ namespace MyBlog
                 var services = scope.ServiceProvider;
                 try
                 {
+                    // try to init db if it doesnt
                     var context = services.GetRequiredService<BlogContext>();
                     SampleData.Initialize(context);
                 }

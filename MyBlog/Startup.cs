@@ -19,13 +19,13 @@ namespace MyBlog
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //create copy of app configuration to us it later as dependency injection
             services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"appsettings.json")
                 .Build());
             string connectionString = Configuration.GetConnectionString("BlogContext");
             services.AddDbContext<BlogContext>(option => option.UseSqlServer(connectionString));
-
 
             services.AddMvc();
         }

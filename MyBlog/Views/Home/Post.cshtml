@@ -1,4 +1,7 @@
-﻿@model MyBlog.Models.Post
+﻿
+@* view display post and comments *@
+
+@model MyBlog.Models.Post
 @using MyBlog.Models
 @{
     ViewData["Title"] = Model.Name;
@@ -15,32 +18,10 @@
     <span class="lead"> by @Model.User posted @Model.Date.ToString("MM/dd/yyyy")</span>
 
     <hr />
+    @* show custom post content *@
     @Html.Raw(Model.Content)
-
-    @*<dl class="row">
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.User)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.User)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Content)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Content)
-            </dd>
-        </dl>*@
     <hr />
+    @* insert add coment partial view *@
     @await Html.PartialAsync("AddComment", new Comment { PostId = Model.Id })
     <hr />
     @foreach (var item in ViewBag.Comments)

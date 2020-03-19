@@ -8,22 +8,24 @@ namespace MyBlog.Models
 {
     public class BlogContext : DbContext
     {
+        //class for EF core to store db as c# entitys
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
         public BlogContext(DbContextOptions<BlogContext> options) : base(options)
         {
+            // chek for existing db and if no create it and fill with seed data
             Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //ON DELETE SET NULL
+            // spesify foreign key in db
             modelBuilder.Entity<Comment>()
                 .HasOne<Post>(c => c.Post)
                 .WithMany(p => p.Comments)
                 .HasForeignKey(c => c.PostId).
-                OnDelete(DeleteBehavior.Cascade);
+                OnDelete(DeleteBehavior.Cascade);//ON DELETE SET NULL
         }
     }
 }
